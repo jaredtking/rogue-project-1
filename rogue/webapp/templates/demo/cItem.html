@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block body %}
+<h2>Content Item {{ item_dict.id }}</h2>
+<p> 
+	{{ item_dict.name }}'s Trust Level is  {{ item_dict.trustLevel }}<br>
+	This content is currently {% if item_dict.enabled %} enabled{% else %} disabled{% endif %}.
+</p>
+{% endblock %}
