@@ -50,6 +50,38 @@ def getContentItem(request, item_name):
   return render_to_response('demo/cItem.html',
                 {'item_dict':content_item.toDict()}, RequestContext(request))
 
+# Render content models
+def getSocialMediaItem(request, item_name):
+  """
+  Controller for getting a content item by name, handles requests to /_Item/<name>
+  """
+  #check to see if item exists, if not 404
+  content_item = get_object_or_404(SocialMedia, imageId = item_name)
+  return render_to_response('content/view.html',
+                {
+                  'item_dict':content_item.toDict(),
+                  'content_type':'socialmedia'}, RequestContext(request))
+def getEmailItem(request, item_name):
+  """
+  Controller for getting a content item by name, handles requests to /_Item/<name>
+  """
+  #check to see if item exists, if not 404
+  content_item = get_object_or_404(Email, imageId = item_name)
+  return render_to_response('content/view.html',
+                {
+                  'item_dict':content_item.toDict(),
+                  'content_type':'email'}, RequestContext(request))
+def getWebpageItem(request, item_name):
+  """
+  Controller for getting a content item by name, handles requests to /_Item/<name>
+  """
+  #check to see if item exists, if not 404
+  content_item = get_object_or_404(Webpage, imageId = item_name)
+  return render_to_response('content/view.html',
+                {
+                  'item_dict':content_item.toDict(),
+                  'content_type':'webpage'}, RequestContext(request))
+
 #render the ember app
 def emberhome(request):
     """

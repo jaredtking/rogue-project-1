@@ -1,0 +1,8 @@
+html,body,h1,h2,h3,h4,h5,h6 { font-family: "Titillium Web"; }
+.navbar { margin: 0; }
+footer { color: #999; }
+.jumbotron p { color: #777; }
+
+.panel img {
+	max-width: 100%;
+}

@@ -25,7 +25,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     # route requests for / to the home controller view
     url(r'^$', 'rogue.webapp.views.home'),
-    # route requests to the /foo/* functoin to the foo controller view
+    # route requests to the /foo/* function to the foo controller view
     url(r'^foo/(?P<foo_bar>\d+)', 'rogue.webapp.views.foo'),
     # Django Rest
     url(r'^api/', include(router.urls)),
@@ -35,6 +35,12 @@ urlpatterns = patterns('',
  	url(r'^ember/$', 'rogue.webapp.views.emberhome'),
 
     #route requests to the /cItem/* function to the getContentItem controller view
-url(r'^cItem/(?P<item_name>\w+)/$', 'rogue.webapp.views.getContentItem'),  
+    url(r'^cItem/(?P<item_name>\w+)/$', 'rogue.webapp.views.getContentItem'),  
+
+    # view models
+    url(r'^social-media/(?P<item_name>\w+)/$', 'rogue.webapp.views.getSocialMediaItem'),  
+    url(r'^email/(?P<item_name>\w+)/$', 'rogue.webapp.views.getEmailItem'),  
+    url(r'^web-page/(?P<item_name>\w+)/$', 'rogue.webapp.views.getWebpageItem'),  
+
 )
 

@@ -1,5 +1,31 @@
 {% extends "base.html" %}
 
 {% block body %}
-<p> This is some static text </p>
+
+	<div class="jumbotron">
+		<div class="container">
+			<h1>Can you spot phishy content?</h1>
+			<p>Our quiz tests how effective you are at detecting fraudulent content.</p>
+			<p><a class="btn btn-primary btn-lg" href="/social-media/1/">Take the quiz!</a></p>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-5">
+				<h3>What is Gone Phishin'?</h3>
+				<p>Gone Phishin' is a quiz of <strong>25 yes/no questions</strong>. The question is, do you trust this
+					piece of content? The content might be an e-mail, a social media message, or a web page.</p>
+				<p>At the end of the quiz we show you how well (or not!) you did.</p>
+				<p class="text-success"><em>We only show screenshots of suspicious conent so there is no risk by taking the quiz.</em></p>
+			</div>
+			<div class="col-md-5 col-md-offset-1">
+				<h3>Who made this?</h3>
+				<p>Gone Phishin' was created by Team Rogue for a senior software project.</p>
+				<p>Team Rogue consists of <em>Cameron Beckfield</em>, <em>Cameron Fowler</em>, <em>Jack Lestina</em>,
+					and <em>Jared King</em>.</p>
+			</div>
+		</div>
+	</div>
+
 {% endblock %}

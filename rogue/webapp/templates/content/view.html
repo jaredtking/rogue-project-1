@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+	<div class="container">
+
+		<h1>Do you trust this?</h1>
+			
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					{% if content_type == "email" %}
+						<span class="glyphicon glyphicon-envelope"></span>
+						E-mail Message
+					{% elif content_type == "socialmedia" %}
+						<span class="glyphicon glyphicon-thumbs-up"></span>
+						Social Media
+					{% elif content_type == "webpage" %}
+						<span class="glyphicon glyphicon-globe"></span>
+						Web Site
+					{% endif %}
+				</h3>
+			</div>
+			<div class="panel-body">
+				<a href="sample-email.png">
+					<img src="/static/imgs/{{ content_type }}-{{ item_dict.imageId }}.png" />
+				</a>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<button class="btn btn-danger btn-lg btn-block">
+					<span class="glyphicon glyphicon-remove-circle"></span> Suspicious
+				</button>
+			</div>
+			<div class="col-md-6">
+				<button class="btn btn-success btn-lg btn-block">
+					<span class="glyphicon glyphicon-ok-circle"></span> Trustworthy
+				</button>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
