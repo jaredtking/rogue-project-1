@@ -17,3 +17,7 @@ admin.site.register(Email,EmailAdmin)
 class WebpageAdmin(admin.ModelAdmin):
     list_display = ('imageId', 'https', 'webAddress', 'title', 'content', 'containsPoorGrammar', 'containsImage', 'trustLevel', 'enabled')
 admin.site.register(Webpage,WebpageAdmin)
+
+class TrustDecisionAdmin(admin.ModelAdmin):
+    list_display = ('user','decision')
+admin.site.register(TrustDecision,TrustDecisionAdmin)

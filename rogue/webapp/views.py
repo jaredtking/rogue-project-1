@@ -106,4 +106,40 @@ class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
 
-  
+class SocialMediaViewSet(viewsets.ModelViewSet):
+    """
+    Views that allow socialmedia to be viewed or edited via RESTful API
+    """
+    queryset = SocialMedia.objects.all()
+    serializer_class = SocialMediaSerializer
+
+class EmailViewSet(viewsets.ModelViewSet):
+    """
+    Views that allow Emails to be viewed or edited via RESTful API
+    """
+    queryset = Email.objects.all()
+    serializer_class = EmailSerializer
+
+class WebpageViewSet(viewsets.ModelViewSet):
+    """
+    Views that allow Webpages to be viewed or edited via RESTful API
+    """
+    queryset = Webpage.objects.all()
+    serializer_class = WebpageSerializer
+
+def startQuiz(request):
+    """
+    Route for starting the quiz. Ember provides the
+    templating.
+    """
+    return render_to_response('quiz.html', {}, RequestContext(request))
+
+def generateQuiz(request):
+    """
+    Route for generating the quiz. Returns JSON.
+    """
+
+    # grab N random content ids from various types
+    # TODO
+
+    return HttpResponse('{"quiz":[{"contentitem_type":"email","contentitem_id":1}]}', mimetype="application/json")

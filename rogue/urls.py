@@ -12,6 +12,9 @@ from rogue.webapp import views
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
+router.register(r'socialmedia', views.SocialMediaViewSet)
+router.register(r'email', views.EmailViewSet)
+router.register(r'webpage', views.WebpageViewSet)
 
 urlpatterns = patterns('',
     # Examples:
@@ -32,7 +35,7 @@ urlpatterns = patterns('',
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
     #Ember file
- 	url(r'^ember/$', 'rogue.webapp.views.emberhome'),
+ 	#url(r'^ember/$', 'rogue.webapp.views.emberhome'),
 
     #route requests to the /cItem/* function to the getContentItem controller view
     url(r'^cItem/(?P<item_name>\w+)/$', 'rogue.webapp.views.getContentItem'),  
@@ -42,5 +45,10 @@ urlpatterns = patterns('',
     url(r'^email/(?P<item_name>\w+)/$', 'rogue.webapp.views.getEmailItem'),  
     url(r'^web-page/(?P<item_name>\w+)/$', 'rogue.webapp.views.getWebpageItem'),  
 
+    # start quiz
+    url(r'^quiz$', 'rogue.webapp.views.startQuiz'),
+
+    # generate quiz
+    url(r'^quiz/generate$', 'rogue.webapp.views.generateQuiz'),
 )
 

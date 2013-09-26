@@ -1,0 +1,38 @@
+<h1>Do you trust this?</h1>
+	
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">
+			{{#if isEmailContentType}}
+				<span class="glyphicon glyphicon-envelope"></span>
+				E-mail Message
+			{{/if}}
+			{{#if isSocialMediaContentType}}
+				<span class="glyphicon glyphicon-thumbs-up"></span>
+				Social Media
+			{{/if}}
+			{{#if isWebSiteContentType}}
+				<span class="glyphicon glyphicon-globe"></span>
+				Web Site
+			{{/if}}
+		</h3>
+	</div>
+	<div class="panel-body">
+		<a {{bind-attr href=imageUrl}} target="_blank">
+			<img {{bind-attr src=imageUrl}} />
+		</a>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+		<button class="btn btn-danger btn-lg btn-block" {{action "markSuspicious"}}>
+			<span class="glyphicon glyphicon-remove-circle"></span> Suspicious
+		</button><br/>
+	</div>
+	<div class="col-md-6">
+		<button class="btn btn-success btn-lg btn-block" {{action "markTrustworthy"}}>
+			<span class="glyphicon glyphicon-ok-circle"></span> Trustworthy
+		</button>
+	</div>
+</div>

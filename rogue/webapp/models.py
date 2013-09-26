@@ -1,4 +1,5 @@
 ﻿from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -135,3 +136,20 @@ class Webpage(models.Model):
 				'enabled':self.enabled,
 				}
 			return wItem
+
+class TrustDecision(models.Model):
+		user = models.ForeignKey(User)
+		decision = models.BooleanField(default=True)
+
+		class Meta:   
+			verbose_name_plural = "Trust Decisions"
+
+		class Admin:
+			list_display = ('user','decision')
+
+		def toDict(self):
+			tdItem = {
+				'user': self.user,
+				'decision': self.decision
+				}
+			return tdItem
