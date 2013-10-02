@@ -16,6 +16,37 @@ App.Store = require('./store'); // delete if you don't want ember-data
 App.api = "/api"
 App.debug = true;
 
+function getCookie(name) {
+     var cookieValue = null;
+     if (document.cookie && document.cookie != '') {
+         var cookies = document.cookie.split(';');
+         for (var i = 0; i < cookies.length; i++) {
+             var cookie = jQuery.trim(cookies[i]);
+             // Does this cookie string begin with the name we want?
+         if (cookie.substring(0, name.length + 1) == (name + '=')) {
+             cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+             break;
+         }
+     }
+ }
+ return cookieValue;
+}
+
+//Makes a promise-based POST request to the 'url' with the given 'data'
+App.postJSON = function(url, data){
+	var token = getCookie('csrftoken');
+	Ember.$.ajax({
+	    url: url,
+	    headers: {"X-CSRFToken": token},
+	    type: "POST",
+	    dataType: "json",
+	    contentType:"application/json",
+	    data: JSON.stringify(data)
+	})
+	.then(function(){if(App.debug){console.log('POST Request to ' +url+' was successful.')}})
+	.fail(function(){if(App.debug){console.log('POST Request to' +url+' with data: '+JSON.stringify(data)+' failed.')}})
+}
+
 //Makes a promise-based PUT request to the 'url' with the given 'data'
 App.putJSON = function(url, data){
 	var token = $('meta[name="csrf-token"]').attr('content');

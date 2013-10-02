@@ -15,6 +15,7 @@ router.register(r'groups', views.GroupViewSet)
 router.register(r'socialmedia', views.SocialMediaViewSet)
 router.register(r'email', views.EmailViewSet)
 router.register(r'webpage', views.WebpageViewSet)
+router.register(r'trustdecision', views.TrustDecisionViewSet)
 
 urlpatterns = patterns('',
     # Examples:

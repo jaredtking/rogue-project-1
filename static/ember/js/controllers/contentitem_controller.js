@@ -1,24 +1,46 @@
 var ContentitemController = Ember.ObjectController.extend({
 	actions: {
 		markSuspicious: function() {
-			console.log('Making a put trust request');
-			var url = App.api + '/contentitems/'+this.get('id');
+			console.log('Making a post trust request');
+			var url = App.api + '/contentitems/' + this.get('imageId');
 
 			// perform API call
-			// TODO
+			App.postJSON(App.api + '/trustdecision/', {
+				user: null,
+				decision: false,
+				ctype: this.get('contentType'),
+				cid: this.get('imageId')
+			});
 
-			console.log('Moving on to next item');
-			// TODO
+			App.q++;
+			if (App.q > App.quiz.length) {
+				console.log('Quiz finished');
+				this.transitionToRoute('finish');
+			} else {
+				console.log('Moving on to next item');
+				this.transitionToRoute('contentitem', App.q);
+			}
 		},
 		markTrustworthy: function() {
-			console.log('Making a put trust request');
-			var url = App.api + '/contentitems/'+this.get('id');
+			console.log('Making a post trust request');
+			var url = App.api + '/contentitems/' + this.get('imageId');
 
 			// perform API call
-			// TODO
+			App.postJSON(App.api + '/trustdecision/', {
+				user: null,
+				decision: true,
+				ctype: this.get('contentType'),
+				cid: this.get('imageId')
+			});
 
-			console.log('Moving on to next item');
-			// TODO
+			App.q++;
+			if (App.q > App.quiz.length) {
+				console.log('Quiz finished');
+				this.transitionToRoute('finish');
+			} else {
+				console.log('Moving on to next item');
+				this.transitionToRoute('contentitem', App.q);
+			}
 		}
 	},
 	isEmailContentType: function(){

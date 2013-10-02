@@ -26,3 +26,8 @@ class WebpageSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = Webpage
 		fields = ('imageId', 'https', 'webAddress', 'title', 'content', 'containsPoorGrammar', 'containsImage', 'trustLevel', 'enabled')
+
+class TrustDecisionSerializer(serializers.HyperlinkedModelSerializer):
+	class Meta:
+		model = TrustDecision
+		fields = ('user','decision', 'ctype', 'cid')

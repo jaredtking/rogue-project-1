@@ -4,10 +4,10 @@ var QuizController = Ember.ObjectController.extend({
 			console.log('Starting quiz');
 
 			// retrieves the quiz order loaded from API
-			var quiz = this.get('quiz');
+			App.quiz = this.get('quiz');
+			App.q = 1;
 
-			// PROBLEM model not loading
-			this.transitionToRoute('contentitem', quiz[0]);
+			this.transitionToRoute('contentitem', App.q);
 		}
 	}
 });

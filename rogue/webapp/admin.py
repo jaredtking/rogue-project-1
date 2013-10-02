@@ -19,5 +19,5 @@ class WebpageAdmin(admin.ModelAdmin):
 admin.site.register(Webpage,WebpageAdmin)
 
 class TrustDecisionAdmin(admin.ModelAdmin):
-    list_display = ('user','decision')
+    list_display = ('user','decision', 'ctype', 'cid')
 admin.site.register(TrustDecision,TrustDecisionAdmin)

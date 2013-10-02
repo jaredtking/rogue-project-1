@@ -21,6 +21,10 @@ from rest_framework import viewsets
 from rogue.webapp.serializers import *
 from django.contrib.auth.models import User,Group
 
+#Import for randomizing the quiz and making the JSon
+import random
+import json
+
 # Create your views here.
 def home(request):
   """
@@ -127,6 +131,13 @@ class WebpageViewSet(viewsets.ModelViewSet):
     queryset = Webpage.objects.all()
     serializer_class = WebpageSerializer
 
+class TrustDecisionViewSet(viewsets.ModelViewSet):
+    """
+    Views that allow Webpages to be viewed or edited via RESTful API
+    """
+    queryset = TrustDecision.objects.all()
+    serializer_class = TrustDecisionSerializer
+
 def startQuiz(request):
     """
     Route for starting the quiz. Ember provides the
@@ -138,8 +149,35 @@ def generateQuiz(request):
     """
     Route for generating the quiz. Returns JSON.
     """
+    #Makes a new list and adds all of the content items to it
+    quiz = []
+    socialMediaSet = SocialMedia.objects.all()
+    emailSet = Email.objects.all()
+    webpageSet = Webpage.objects.all()
+    queryset = []
 
-    # grab N random content ids from various types
-    # TODO
+    for item in socialMediaSet:
+      queryset.append(item)
+    for item in emailSet:
+      queryset.append(item)
+    for item in socialMediaSet:
+      queryset.append(item)
 
-    return HttpResponse('{"quiz":[{"contentitem_type":"email","contentitem_id":1}]}', mimetype="application/json")
+    
+    #Randomizes the given list and then adds the first three items into the quiz
+    random.shuffle(queryset)
+    for x in range(0, 4):
+      if queryset[x] in socialMediaSet:
+        contentType = "socialmedia"
+      elif queryset[x] in webpageSet:
+        contentType = "webpage"
+      else:
+        contentType = "email"
+
+      imId = queryset[x].imageId
+
+      quiz.append({
+        "contentitem_id": imId,
+        "contentitem_type": contentType})
+    
+    return HttpResponse(json.dumps({'quiz':quiz}), mimetype="application/json")

@@ -138,18 +138,22 @@ class Webpage(models.Model):
 			return wItem
 
 class TrustDecision(models.Model):
-		user = models.ForeignKey(User)
+		user = models.ForeignKey(User,null=True,blank=True) # eventually do not want this to be null
 		decision = models.BooleanField(default=True)
+		ctype = models.TextField(default="emails")
+		cid = models.CharField(max_length=50)
 
 		class Meta:   
 			verbose_name_plural = "Trust Decisions"
 
 		class Admin:
-			list_display = ('user','decision')
+			list_display = ('user','decision', 'ctype', 'cid')
 
 		def toDict(self):
 			tdItem = {
 				'user': self.user,
-				'decision': self.decision
+				'decision': self.decision,
+				'ctype': self.ctype,
+				'cid': self.cid
 				}
 			return tdItem
